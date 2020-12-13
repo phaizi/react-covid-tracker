@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         display: 'none',
+        position: 'relative',
+        left: '100px',
+        fontWeight: 700,
+        fontSize: 40,
+
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
@@ -83,15 +88,15 @@ export default function NavBar() {
                         Covid Tracker
           </Typography>
                     <div className={classes.search}>
-                        <div className={classes.searchIcon}>
+                        {/* <div className={classes.searchIcon}> */}
                             {/* <IconButton> */}
                             {/* <SearchIcon /> */}
-                                {/* <SearchTwoToneIcon /> */}
+                            {/* <SearchTwoToneIcon /> */}
                             {/* </IconButton> */}
-                        </div>
-                            <IconButton color="inherit" aria-label="search country" component="span">
-                              <SearchIcon />
-                            </IconButton>
+                        {/* </div> */}
+                        <IconButton color="inherit" aria-label="search country" component="span">
+                            <SearchIcon />
+                        </IconButton>
                         <InputBase
                             placeholder="Search Country…"
                             classes={{
@@ -103,8 +108,8 @@ export default function NavBar() {
                     </div>
                 </Toolbar>
             </AppBar>
-                            
-      
+
+
         </div>
     );
 }
