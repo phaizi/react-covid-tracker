@@ -5,6 +5,7 @@ import Navbar from './components/NavBar.js';
 import DisplayMessage from './components/layout/DisplayMessage';
 import { createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import {GlobalDataContext, CountriesContext} from './constants/context.js';
+import SelectCountry from './components/layout/SelectCountry.js';
 
 const theme = createMuiTheme({
   palette: {
@@ -25,7 +26,7 @@ const URL = "https://covid19.mathdro.id/api";
 
 
 function App() {
-  const [countriesArray, setCountries] = useState([]);
+  const [countriesArray, setCountries] = useState(['Global']);
   const [globalData, setGlobal] = useState({});
   const [dailyData, setDaily] = useState([]);
   const [selectedCountry, setCountry] = useState("");
@@ -35,8 +36,8 @@ function App() {
       const response = await fetch(`${URL}/${selectedCountry && "countries/"}${selectedCountry}`);
       const { confirmed, recovered, deaths } = await response.json();
 
-      setGlobal({ ...globalData, [selectedCountry || "global"]: { Confirmed: confirmed.value,  Deaths: deaths.value, Recovered: recovered.value } });
-      console.log({ ...globalData, [selectedCountry || "global"]: { Confirmed: confirmed.value, Recovered: recovered.value, Deaths: deaths.value } });
+      setGlobal({ ...globalData, [selectedCountry || "Global"]: { Confirmed: confirmed.value,  Deaths: deaths.value, Recovered: recovered.value } });
+      console.log({ ...globalData, [selectedCountry || "Global"]: { Confirmed: confirmed.value, Recovered: recovered.value, Deaths: deaths.value } });
 
 
       // console.log(temp)
@@ -50,7 +51,7 @@ function App() {
     async function fetchCountries() {
       const response = await fetch(`${URL}/countries`);
       const {countries} = await response.json();
-      setCountries(countries.map((country) => country.name))
+      setCountries([... countriesArray, ... countries.map((country) => country.name)])
       const count = countries.map((country) => country.name)
       // setCountries(result.countries);
       console.log(count)
@@ -69,6 +70,7 @@ function App() {
             <GlobalDataContext.Provider value={globalData}>
               <InfoPanel></InfoPanel>
             </GlobalDataContext.Provider>
+            <SelectCountry></SelectCountry>
           </div>
         </CountriesContext.Provider>
       </ThemeProvider>

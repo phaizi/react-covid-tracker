@@ -7,8 +7,6 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {GlobalDataContext, CountriesContext} from '../../constants/context.js';
-import CssBaseline from "@material-ui/core/CssBaseline";
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +40,7 @@ export default function InfoPanel() {
         <div className={classes.root}>
             <Grid container justify="center">
 
-                {Object.keys(globalData.global??[]).map((label, index) => (
+                {Object.keys(globalData.Global??[]).map((label, index) => (
                     <Grid key={label} item xs={12} sm={5} md={3}>
                         <Card className={classes.card}>
                             <CardContent className={classes[`${label}Label`]} >
@@ -50,7 +48,9 @@ export default function InfoPanel() {
                             </CardContent>
                             <CardMedia  className={classes.media} image={picAddresses[index]}></CardMedia>
                             <CardContent >
-                                <Typography  variant="h4">{globalData[selectedCountry||"global"][label].toString().replace(/\d(?=(\d{3})+$)/g, "$&,")}</Typography>
+                                <Typography  variant="h4">{globalData?.[selectedCountry||"Global"]?.[label]
+                                .toString().replace(/\d(?=(\d{3})+$)/g, "$&,")}
+                                </Typography>
                                 <Typography  variant="h6" color="textSecondary">{`Number of ${label.replace(/s/, '')} Cases of Covid-19`}</Typography>
                             </CardContent>
                         </Card>
