@@ -21,7 +21,8 @@ export default function Graphs(props) {
     // this is done so that when we change to other country from global having linegraph it adjusts to bargraph
     case 'LineOfOtherThanGlobal':
       props.setType('Bar');
-      break;
+      return <div></div>
+    // needed to return something from Graph.js
 
     case 'Loading':
       return <div >
@@ -44,6 +45,9 @@ export default function Graphs(props) {
 
     case 'Polar':
       return <PolarGraph title='Polar' country={country} labels={Object.keys({ ...globalData?.Global })} data={Object.values({ ...globalData?.[selectedCountry] })}></PolarGraph>
+
+    default:
+        return <div>failed</div>
   }
 
 

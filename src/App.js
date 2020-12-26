@@ -59,8 +59,8 @@ function App() {
     async function fetchData() {
       const response = await fetch(`${URL}/${(selectedCountry === "Global") ? "" : `countries/${selectedCountry}`}`);
       const { confirmed, recovered, deaths } = await response.json();
-      const temp = { ...globalData, [selectedCountry || "Global"]: { Confirmed: confirmed.value, Deaths: deaths.value, Recovered: recovered.value } }
-      setGlobal(temp);
+      // const temp = { ...globalData, [selectedCountry || "Global"]: { Confirmed: confirmed.value, Deaths: deaths.value, Recovered: recovered.value } }
+      setGlobal((globalData)=>({ ...globalData, [selectedCountry || "Global"]: { Confirmed: confirmed.value, Deaths: deaths.value, Recovered: recovered.value } }));
       setLoading(false);
     }
     if (!globalData.hasOwnProperty(selectedCountry)) {
@@ -68,13 +68,13 @@ function App() {
     } else {
       setLoading(false);
     }
-  }, [selectedCountry])
+  }, [selectedCountry,globalData])
 
   useEffect(() => {
     async function fetchCountries() {
       const response = await fetch(`${URL}/countries`);
       const { countries } = await response.json();
-      setCountries([...countriesArray, ...countries.map((country) => country.name)])
+      setCountries((countriesArray)=>([...countriesArray, ...countries.map((country) => country.name)]))
     }
     fetchCountries();
   }, [])
