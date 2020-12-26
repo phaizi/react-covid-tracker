@@ -2,4 +2,5 @@ import {createContext} from 'react';
 
 const CountriesContext = createContext();
 const GlobalDataContext = createContext();
-export {CountriesContext, GlobalDataContext}
+const DailyDataContext = createContext();
+export {CountriesContext, GlobalDataContext, DailyDataContext}

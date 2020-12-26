@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import background from './coronabkd.png'
 import corona from './coronawobkd.png'
 
 const useStyles = makeStyles({
@@ -9,45 +8,23 @@ const useStyles = makeStyles({
   {
     color: 'white',
     fontWeight: 700,
-    // fontSize: '2rem',
-    fontSize:'2vw',
+    fontSize: '2vw',
     margin: '30px',
     padding: '30px',
     wordSpacing: 10,
     backgroundColor: '#2f2f2f',
-    // backgroundImage: `url(${background})`
   }
   ,
 });
-
-
-// const theme = createMuiTheme({
-//   typography: {
-//     fontFamily: [
-//       '-apple-system',
-//       'BlinkMacSystemFont',
-//       '"Segoe UI"',
-//       'Roboto',
-//       '"Helvetica Neue"',
-//       'Arial',
-//       'sans-serif',
-//       '"Apple Color Emoji"',
-//       '"Segoe UI Emoji"',
-//       '"Segoe UI Symbol"',
-//     ].join(','),
-
-//   },
-// });
 
 export default function DisplayMessage() {
   const classes = useStyles();
 
   return (
-
-    <div  className={classes.root}>
+    <div className={classes.root}>
       <Grid container >
         <Grid item xs={12} md={3}>
-          <img src= {corona} style={{width:'100%'}} alt='corona pic'></img>
+          <img src={corona} style={{ width: '100%' }} alt='corona pic'></img>
         </Grid>
         <Grid item xs={12} md={9}>
           <p >
